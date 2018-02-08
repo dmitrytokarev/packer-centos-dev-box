@@ -48,21 +48,6 @@
 
   "provisioners": [
     {
-      "type": "file",
-      "source": "{{user `home`}}/repos/linux-rootfs-resize",
-      "destination": "/tmp/"
-    },
-    {
-      "type": "file",
-      "source": "{{user `home`}}/repos/cm_setup",
-      "destination": "/tmp/"
-    },
-    {
-      "type": "file",
-      "source": "scripts/tomcat-init",
-      "destination": "/tmp/"
-    },
-    {
       "type": "shell",
       "script": "scripts/install_3rd_party_sw.sh",
       "execute_command": "echo 'default' | {{.Vars}} sudo -S -E bash '{{.Path}}' {{user `vm_purpose`}}"
