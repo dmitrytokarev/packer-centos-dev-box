@@ -28,7 +28,7 @@ https://hodgkins.io/best-practices-with-packer-and-windows  --- Packer best prac
 ## Validate
 Validate Packer json template:
 
-    packer validate --var-file=centos_7.4_desktop.json centos_base.json
+    packer validate --var-file=vars/centos_7_desktop.json centos_base.json
 
 ## Build
 
@@ -36,20 +36,20 @@ NOTE: before building update iso path in the Packer template files (centos_6_des
 
 Build VirtualBox image only ([docs](https://www.packer.io/docs/builders/virtualbox-iso.html)):
 
-    packer build --only=virtualbox --var-file=centos_7.3_desktop.json centos.json
+    packer build --only=vbox --var-file=centos_7_desktop.json centos_base.json
 
 Build VMware image only ([docs](https://www.packer.io/docs/builders/vmware-iso.html)):
 
-    packer build --only=vmware --var-file=centos_7.3_desktop.json centos.json
+    packer build --only=vmware --var-file=centos_7_desktop.json centos_base.json
 
 
 Build all image types (runs in parallel):
 
-    packer build --var-file=centos_7.3_desktop.json centos.json
+    packer build --var-file=vars/centos_7_desktop.json centos_base.json
 
 Use -force option to overwrite existing artifacts:
 
-    packer build -force --var-file=centos_7.3_desktop.json centos.json
+    packer build -force --var-file=vars/centos_7_desktop.json centos_base.json
     
 [More build options](https://www.packer.io/docs/command-line/build.html)
 
