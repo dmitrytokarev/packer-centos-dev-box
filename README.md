@@ -28,7 +28,7 @@ https://hodgkins.io/best-practices-with-packer-and-windows  --- Packer best prac
 ## Validate
 Validate Packer json template:
 
-    packer validate --var-file=centos_7.3_server.json centos.json
+    packer validate --var-file=centos_7.4_desktop.json centos_base.json
 
 ## Build
 
