@@ -1,0 +1,19 @@
+# MacOS files
+.DS_Store
+
+# Packer cache
+packer_cache/*
+
+# Downloaded OS binaries
+*.iso
+
+# Build Artefacts
+*.box
+iso/*
+output-virtualbox-iso/*
+
+# Vagrant files
+.vagrant/*
+
+# IntelliJ IDEA or PyCharm files
+.idea

@@ -1,0 +1,65 @@
+{
+  "variables": {
+    "vm_purpose": null,
+    "centos_ver_short": null,
+    "centos_ver_full": null,
+    "iso_path": null,
+    "iso_checksum": null,
+    "home": "{{env `HOME`}}"
+  },
+
+  "builders": [
+    {
+      "name": "virtualbox",
+      "output_directory": "./output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base",
+      "vm_name": "centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base",
+      "guest_os_type": "RedHat_64",
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_url": "{{user `home`}}/{{user `iso_path`}}",
+      "type": "virtualbox-iso",
+      "format": "ova",
+      "boot_wait": "10s",
+      "headless": false,
+      "ssh_username": "default",
+      "ssh_password": "default",
+      "ssh_timeout": "1h",
+      "disk_size": 10240,
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "4096"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+      ],
+      "http_directory": "kickstart",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos_{{user `centos_ver_short`}}_{{user `vm_purpose`}}.cfg<enter>"
+      ],
+      "shutdown_command": "echo 'default' | sudo -S /sbin/halt -h -p"
+    },
+    {
+      "name": "vmware",
+      "output_directory": "./output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base",
+      "vm_name": "centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base",
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_url": "{{user `home`}}/{{user `iso_path`}}",
+      "type": "vmware-iso",
+      "format": "ova",
+      "boot_wait": "10s",
+      "headless": false,
+      "ssh_username": "default",
+      "ssh_password": "default",
+      "ssh_timeout": "1h",
+      "disk_size": 40960,
+      "http_directory": "kickstart",
+      "vmx_data": {
+        "memsize": "40960",
+        "numvcpus": "8",
+        "cpuid.coresPerSocket": "1"
+      },
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos_{{user `centos_ver_short`}}_{{user `vm_purpose`}}.cfg<enter>"
+      ],
+      "shutdown_command": "echo 'default' | sudo -S /sbin/halt -h -p"
+    }
+  ]
+}

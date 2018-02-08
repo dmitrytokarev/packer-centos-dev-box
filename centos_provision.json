@@ -1,0 +1,71 @@
+{
+  "variables": {
+    "vm_purpose": null,
+    "centos_ver_short": null,
+    "centos_ver_full": null,
+    "home": "{{env `HOME`}}"
+  },
+
+  "builders": [
+    {
+      "name": "virtualbox",
+      "output_directory": "./output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}",
+      "vm_name": "centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}",
+      "type": "virtualbox-ovf",
+      "format": "ova",
+      "boot_wait": "10s",
+      "headless": false,
+      "ssh_username": "default",
+      "ssh_password": "default",
+      "ssh_timeout": "1h",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "24576"],
+        ["modifyvm", "{{.Name}}", "--cpus", "8"]
+      ],
+      "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
+      "source_path": "output-centos-{{user `centos_ver_full`}}-server-base/centos-{{user `centos_ver_full`}}-server-base.ova"
+    },
+    {
+      "name": "vmware",
+      "output_directory": "./output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}",
+      "vm_name": "centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}",
+      "type": "vmware-vmx",
+      "boot_wait": "10s",
+      "headless": false,
+      "ssh_username": "default",
+      "ssh_password": "default",
+      "ssh_timeout": "1h",
+      "http_directory": "kickstart",
+      "vmx_data": {
+        "memsize": "24576",
+        "numvcpus": "8",
+        "cpuid.coresPerSocket": "1"
+      },
+      "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
+      "source_path": "output-centos-{{user `centos_ver_full`}}-server-base/centos-{{user `centos_ver_full`}}-server-base.vmx"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "{{user `home`}}/repos/linux-rootfs-resize",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "file",
+      "source": "{{user `home`}}/repos/cm_setup",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "file",
+      "source": "scripts/tomcat-init",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/install_3rd_party_sw.sh",
+      "execute_command": "echo 'default' | {{.Vars}} sudo -S -E bash '{{.Path}}' {{user `vm_purpose`}}"
+    }
+  ]
+}
