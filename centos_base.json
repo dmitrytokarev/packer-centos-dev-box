@@ -10,7 +10,7 @@
 
   "builders": [
     {
-      "name": "virtualbox",
+      "name": "vbox",
       "output_directory": "./output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base",
       "vm_name": "centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base",
       "guest_os_type": "RedHat_64",
