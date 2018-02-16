@@ -51,7 +51,7 @@
         "http://mirrors.ocf.berkeley.edu/centos/{{user `centos_ver_short`}}/isos/x86_64/{{user `iso_file`}}"
       ],
       "type": "vmware-iso",
-      "format": "ova",
+      "format": "vmx",
       "boot_wait": "10s",
       "headless": false,
       "ssh_username": "default",
