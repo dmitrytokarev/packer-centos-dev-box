@@ -42,7 +42,7 @@
         "cpuid.coresPerSocket": "1"
       },
       "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
-      "source_path": "output-centos-{{user `centos_ver_full`}}-server-base/centos-{{user `centos_ver_full`}}-server-base.vmx"
+      "source_path": "output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base/centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base.vmx"
     }
   ],
 

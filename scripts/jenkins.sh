@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -x # print commands
+set -e # fail script on a first failed command
+
 # update system
 sudo yum update -y
 
