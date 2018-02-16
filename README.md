@@ -51,6 +51,13 @@ Use -force option to overwrite existing artifacts:
 
     packer build -force --var-file=vars/centos_7_desktop.json centos_base.json
     
+
+Build base and provisioned images just with 2 commands:
+
+    packer build -force --only=vbox --var-file=vars/centos_7_server.json centos_base.json
+    packer build -force --only=vbox --var-file=vars/centos_7_server.json centos_provision.json
+
+
 [More build options](https://www.packer.io/docs/command-line/build.html)
 
 ## Docs
