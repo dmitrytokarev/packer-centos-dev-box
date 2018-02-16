@@ -59,7 +59,7 @@ sudo service jenkins start
 # go to your browser and load page http://localhost:8081
 
 # retrieve initial admin password
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+#sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 # in the browser
 # install desired plugins
