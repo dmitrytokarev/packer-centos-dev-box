@@ -38,7 +38,7 @@ sudo yum -y install docker-ce
 groups
 #if previous command output didn’t have docker in the list of groups run this command: sudo groupadd docker
 # now add users to docker group
-sudo usermod -aG docker $USER
+sudo usermod -aG docker default
 # start docker
 sudo systemctl start docker
 sudo systemctl enable docker  # to start docker on boot (add docker to autostart list)
