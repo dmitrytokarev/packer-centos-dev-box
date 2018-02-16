@@ -8,7 +8,7 @@
 
   "builders": [
     {
-      "name": "virtualbox",
+      "name": "vbox",
       "output_directory": "./output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}",
       "vm_name": "centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}",
       "type": "virtualbox-ovf",
@@ -19,11 +19,11 @@
       "ssh_password": "default",
       "ssh_timeout": "1h",
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "24576"],
-        ["modifyvm", "{{.Name}}", "--cpus", "8"]
+        ["modifyvm", "{{.Name}}", "--memory", "4096"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"]
       ],
       "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
-      "source_path": "output-centos-{{user `centos_ver_full`}}-server-base/centos-{{user `centos_ver_full`}}-server-base.ova"
+      "source_path": "output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base/centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base.ova"
     },
     {
       "name": "vmware",
@@ -37,8 +37,8 @@
       "ssh_timeout": "1h",
       "http_directory": "kickstart",
       "vmx_data": {
-        "memsize": "24576",
-        "numvcpus": "8",
+        "memsize": "4096",
+        "numvcpus": "2",
         "cpuid.coresPerSocket": "1"
       },
       "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
@@ -49,7 +49,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "scripts/install_3rd_party_sw.sh",
+      "script": "scripts/jenkins.sh",
       "execute_command": "echo 'default' | {{.Vars}} sudo -S -E bash '{{.Path}}' {{user `vm_purpose`}}"
     }
   ]
