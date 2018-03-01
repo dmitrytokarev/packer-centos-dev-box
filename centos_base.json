@@ -30,8 +30,8 @@
       "ssh_timeout": "1h",
       "disk_size": 10240,
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "4096"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        ["modifyvm", "{{.Name}}", "--memory", "2048"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"]
       ],
       "http_directory": "kickstart",
       "boot_command": [
@@ -57,11 +57,11 @@
       "ssh_username": "default",
       "ssh_password": "default",
       "ssh_timeout": "1h",
-      "disk_size": 40960,
+      "disk_size": 10240,
       "http_directory": "kickstart",
       "vmx_data": {
-        "memsize": "40960",
-        "numvcpus": "8",
+        "memsize": "2048",
+        "numvcpus": "1",
         "cpuid.coresPerSocket": "1"
       },
       "boot_command": [

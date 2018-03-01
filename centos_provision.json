@@ -19,8 +19,8 @@
       "ssh_password": "default",
       "ssh_timeout": "1h",
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "4096"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        ["modifyvm", "{{.Name}}", "--memory", "2048"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"]
       ],
       "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
       "source_path": "output-centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base/centos-{{user `centos_ver_full`}}-{{user `vm_purpose`}}-base.ova"
@@ -37,8 +37,8 @@
       "ssh_timeout": "1h",
       "http_directory": "kickstart",
       "vmx_data": {
-        "memsize": "4096",
-        "numvcpus": "2",
+        "memsize": "2048",
+        "numvcpus": "1",
         "cpuid.coresPerSocket": "1"
       },
       "shutdown_command": "echo 'default' | sudo -S shutdown -P now",
