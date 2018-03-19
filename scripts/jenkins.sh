@@ -17,7 +17,7 @@ cd /usr/bin
 sudo ln -s python3.6 python3
 sudo ln -s /usr/bin/python3 /usr/local/bin/python
 python --version  # test python version
-wget https://bootstrap.pypa.io/get-pip.py
+sudo wget https://bootstrap.pypa.io/get-pip.py
 sudo python3.6 get-pip.py
 pip --version  # test pip is installed
 pip install -U setuptools
