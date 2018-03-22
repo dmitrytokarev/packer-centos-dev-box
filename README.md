@@ -36,11 +36,11 @@ NOTE: before building update iso path in the Packer template files (centos_6_des
 
 Build VirtualBox image only ([docs](https://www.packer.io/docs/builders/virtualbox-iso.html)):
 
-    packer build --only=vbox --var-file=centos_7_desktop.json centos_base.json
+    packer build --only=vbox --var-file=vars/centos_7_desktop.json centos_base.json
 
 Build VMware image only ([docs](https://www.packer.io/docs/builders/vmware-iso.html)):
 
-    packer build --only=vmware --var-file=centos_7_desktop.json centos_base.json
+    packer build --only=vmware --var-file=vars/centos_7_desktop.json centos_base.json
 
 
 Build all image types (runs in parallel):
